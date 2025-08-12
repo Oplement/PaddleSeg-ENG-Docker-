@@ -67,7 +67,10 @@ def main():
     # logger.info("test info")
     #
     app = QApplication(sys.argv)
-    lang = settings.value("language")
+    
+    lang = settings.value("language") or "English"
+    settings.setValue("language", lang)
+    
     if lang != "中文":
         trans = QtCore.QTranslator(app)
         trans.load(osp.join(pjpath, f"util/translate/{lang}"))
